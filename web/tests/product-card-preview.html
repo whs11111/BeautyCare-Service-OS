@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>商品推荐卡片预览</title>
+<style>body{margin:0;padding:28px;background:#f7f6fa;font-family:system-ui,"Microsoft YaHei",sans-serif}#app{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}</style>
+<div id="app"></div>
+<script type="module">
+import { createApp, h } from 'vue';
+import Card from '../src/components/ProductRecommendationCard.vue';
+createApp({ components: { Card }, data: () => ({ products: [
+  { sku: 'LP-SC596-R', name: '巴黎欧莱雅小蜜罐面霜4.0 滋润版', category: '面霜', price: 339, source: 'https://www.lorealparis.com.cn/product/?id=SC596/', reasons: ['商品资料提及玻色因+胜肽', '内外紧致', '成分尚未核实，请以包装成分表为准'] },
+  { sku: 'LP-SQ045', name: '巴黎欧莱雅逆时精华(逆时瓶)', category: '精华', price: 0, source: 'https://www.lorealparis.com.cn/product/?id=SQ045/', reasons: ['商品资料提及视黄醇、玻色因', '价格待确认'] }
+] }), render() { return this.products.map(product => h(Card, { key: product.sku, product })); } }).mount('#app');
+</script></html>

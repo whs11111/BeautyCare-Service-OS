@@ -1,0 +1,18 @@
+{
+  "conversationId": 5,
+  "originalName": "孙女士",
+  "name": "丁女士",
+  "avatar": "丁",
+  "date": "2026-10-18",
+  "agentId": "agent2",
+  "agentName": "客服02",
+  "sessionId": "demo-ding-shipping-20261018",
+  "messages": [
+    { "id": "demo-ding-u1", "from": "user", "text": "您好，想问一下我的订单什么时候发货？现在还是待发货状态。", "time": "14:00", "sentAt": "2026-10-18T14:00:00+08:00" },
+    { "id": "demo-ding-a1", "from": "agent", "text": "丁女士，您好，让您久等了。我这边帮您查询了订单的发货安排，今天暂时还没有发出，预计明天安排发货。", "time": "14:01", "sentAt": "2026-10-18T14:01:00+08:00" },
+    { "id": "demo-ding-u2", "from": "user", "text": "那麻烦您明天再帮我跟进一下，发货后告诉我进度，可以吗？", "time": "14:02", "sentAt": "2026-10-18T14:02:00+08:00" },
+    { "id": "demo-ding-a2", "from": "agent", "text": "可以的，明天会为您安排发货，我也会继续帮您跟进发货进度，有新的进展会及时告知您。", "time": "14:03", "sentAt": "2026-10-18T14:03:00+08:00" },
+    { "id": "demo-ding-u3", "from": "user", "text": "好的，那我等您明天的消息，谢谢。", "time": "14:04", "sentAt": "2026-10-18T14:04:00+08:00" },
+    { "id": "demo-ding-a3", "from": "agent", "text": "不客气，丁女士。我已经记下您的需求，明天会继续跟进。", "time": "14:05", "sentAt": "2026-10-18T14:05:00+08:00" }
+  ]
+}

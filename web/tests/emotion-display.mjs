@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import { emotionDisplay } from '../src/utils/emotionDisplay.js';
+const conversation = { emotionScore: 85, emotionHistory: [{ time: '10:00', score: 30 }, { time: '10:01', score: 5 }] };
+const display = emotionDisplay(conversation);
+assert.equal(display.score, 85);
+assert.equal(display.history.at(-1).score, 85, 'Final point must match current score');
+assert.equal(display.history[0].score, 30, 'Earlier points remain unchanged');
+assert.equal(conversation.emotionHistory[1].score, 5, 'Display does not mutate store history');
+const pending = emotionDisplay({ ...conversation, reception: { emotionScore: 60, emotionAnalysisPending: true } });
+assert.equal(pending.score, null, 'Do not display provisional rule score');
+assert.equal(pending.history.at(-1).score, 5, 'Pending results do not alter prior curve');
+const complete = emotionDisplay({ ...conversation, reception: { emotionScore: 85, emotionAnalysisPending: false, emotionTrend: [{ score: 60, time: '10:00' }, { score: 3, time: '10:01' }] } });
+assert.equal(complete.history.at(-1).score, complete.score);
+assert.equal(emotionDisplay({ emotionScore: 85 }).history[0].score, 85);
+assert.equal(emotionDisplay({}).history.length, 0);
+assert.equal(96 - complete.history.at(-1).score * 0.76 < 58, true, '85 must appear above midline');
+console.log('PASS consistent score and curve, pending indicator, preserved earlier points and 85-point vertical position');

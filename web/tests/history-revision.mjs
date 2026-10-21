@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import { acceptsHistoryEvent, beginHistorySnapshot, orderedHistory } from '../src/utils/historyRevision.js';
+const old = { id: 'old', text: '给你们好评' };
+const restored = { historyRevision: 'reset-2', messages: [{ id: 'shipping', text: '明天发货' }] };
+const conversation = { messages: [old] };
+beginHistorySnapshot(conversation, restored);
+assert.deepEqual(conversation.messages, []);
+assert.equal(conversation.historyRevision, 'reset-2');
+assert.equal(acceptsHistoryEvent(conversation, {}), false);
+assert.equal(acceptsHistoryEvent(conversation, { historyRevision: 'reset-1' }), false);
+assert.equal(acceptsHistoryEvent(conversation, { historyRevision: 'reset-2' }), true);
+assert.equal(acceptsHistoryEvent({}, {}), true);
+assert.deepEqual(orderedHistory([old, ...restored.messages], restored), restored.messages);
+assert.deepEqual(orderedHistory([old], { messages: [{ id: 'new' }] }), [old, { id: 'new' }]);
+conversation.messages = restored.messages;
+beginHistorySnapshot(conversation, restored);
+assert.deepEqual(conversation.messages, restored.messages);
+console.log('PASS restored history replaces stale cache, rejects old-tab events, preserves ordinary histories');

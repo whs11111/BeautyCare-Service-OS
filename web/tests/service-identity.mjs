@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import { serviceSender, isRobotMessage } from '../src/utils/serviceIdentity.js';
+assert.equal(serviceSender({ from: 'agent', kind: 'bot-welcome' }), '客服机器人');
+assert.equal(serviceSender({ from: 'agent', kind: 'bot-reply' }), '客服机器人');
+assert.equal(serviceSender({ from: 'agent', kind: 'demo-promotion' }), '客服机器人');
+assert.equal(serviceSender({ from: 'agent', kind: 'handoff-request' }), '客服机器人');
+assert.equal(serviceSender({ from: 'agent', agentName: '客服02' }), '客服02');
+assert.equal(serviceSender({ from: 'agent', automatic: true, text: '我是客服02，很高兴为您服务！', agentName: '客服02' }), '历史自动接待通知');
+assert.equal(isRobotMessage({ from: 'user', kind: 'bot-reply' }), false);
+console.log('PASS robot identity, human identity and historical automatic notices remain distinct');
