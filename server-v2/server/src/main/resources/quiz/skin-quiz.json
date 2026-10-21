@@ -1,0 +1,395 @@
+{
+  "version": "1.0",
+  "title": "1分钟AI测肤",
+  "intro": "回答几个小问题，帮你找到真正适合自己的护肤方案。肤质会随气候和季节变化，建议每季度测一次。",
+  "questions": [
+    {
+      "id": "cheek_tight",
+      "dimension": "dry",
+      "multi": false,
+      "text": "平时两颊会有干燥紧绷的感觉吗？",
+      "options": [
+        {
+          "id": "yes",
+          "text": "会有干燥紧绷",
+          "scores": {
+            "D": 2
+          },
+          "concerns": [
+            "干燥起皮"
+          ]
+        },
+        {
+          "id": "no",
+          "text": "不会有干燥紧绷",
+          "scores": {}
+        }
+      ]
+    },
+    {
+      "id": "after_wash",
+      "dimension": "dry",
+      "multi": false,
+      "text": "洗完脸不涂任何东西，1小时后脸部感觉是？",
+      "options": [
+        {
+          "id": "tight",
+          "text": "整脸紧绷，甚至起皮",
+          "scores": {
+            "D": 2
+          },
+          "concerns": [
+            "干燥起皮"
+          ]
+        },
+        {
+          "id": "comfortable",
+          "text": "舒适，不干也不油",
+          "scores": {
+            "N": 1
+          }
+        },
+        {
+          "id": "t_oily",
+          "text": "额头鼻子有点油，两颊还好",
+          "scores": {
+            "T": 2
+          }
+        },
+        {
+          "id": "all_oily",
+          "text": "整脸都开始泛油光",
+          "scores": {
+            "O": 2
+          }
+        }
+      ]
+    },
+    {
+      "id": "noon_oil",
+      "dimension": "oil",
+      "multi": false,
+      "text": "到了中午，T区（额头、鼻子）出油情况？",
+      "options": [
+        {
+          "id": "heavy",
+          "text": "明显油光，需要吸油纸",
+          "scores": {
+            "T": 2
+          },
+          "concerns": [
+            "出油"
+          ]
+        },
+        {
+          "id": "light",
+          "text": "微微出油",
+          "scores": {
+            "T": 1
+          }
+        },
+        {
+          "id": "none",
+          "text": "基本不出油",
+          "scores": {
+            "D": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "pores",
+      "dimension": "oil",
+      "multi": false,
+      "text": "照镜子时，毛孔明显吗？",
+      "options": [
+        {
+          "id": "whole",
+          "text": "两颊和T区都明显",
+          "scores": {
+            "O": 1
+          },
+          "concerns": [
+            "毛孔"
+          ]
+        },
+        {
+          "id": "t_zone",
+          "text": "只有鼻子周围明显",
+          "scores": {
+            "T": 1
+          },
+          "concerns": [
+            "毛孔"
+          ]
+        },
+        {
+          "id": "fine",
+          "text": "不太明显",
+          "scores": {}
+        }
+      ]
+    },
+    {
+      "id": "acne",
+      "dimension": "concern",
+      "multi": false,
+      "text": "最近一个月，脸上长痘或闭口的情况？",
+      "options": [
+        {
+          "id": "often",
+          "text": "经常长",
+          "scores": {
+            "O": 1
+          },
+          "concerns": [
+            "痘痘",
+            "闭口"
+          ]
+        },
+        {
+          "id": "sometimes",
+          "text": "偶尔长一两颗",
+          "scores": {}
+        },
+        {
+          "id": "never",
+          "text": "基本不长",
+          "scores": {}
+        }
+      ]
+    },
+    {
+      "id": "reactivity",
+      "dimension": "sensitive",
+      "multi": false,
+      "text": "换季或用新产品时，会泛红、刺痛或发痒吗？",
+      "options": [
+        {
+          "id": "often",
+          "text": "经常会",
+          "scores": {
+            "S": 3
+          },
+          "concerns": [
+            "泛红",
+            "屏障受损"
+          ]
+        },
+        {
+          "id": "sometimes",
+          "text": "偶尔会",
+          "scores": {
+            "S": 1
+          }
+        },
+        {
+          "id": "rarely",
+          "text": "几乎不会",
+          "scores": {}
+        }
+      ]
+    },
+    {
+      "id": "redness",
+      "dimension": "sensitive",
+      "multi": false,
+      "text": "脸上容易出现红血丝或一阵阵泛红吗？",
+      "options": [
+        {
+          "id": "yes",
+          "text": "容易泛红 / 有红血丝",
+          "scores": {
+            "S": 2
+          },
+          "concerns": [
+            "泛红"
+          ]
+        },
+        {
+          "id": "no",
+          "text": "不会",
+          "scores": {}
+        }
+      ]
+    },
+    {
+      "id": "intolerance",
+      "dimension": "avoid",
+      "multi": true,
+      "text": "用过以下成分后有不舒服吗？（可多选）",
+      "options": [
+        {
+          "id": "alcohol",
+          "text": "酒精（乙醇）",
+          "avoid": [
+            "含酒精"
+          ]
+        },
+        {
+          "id": "fragrance",
+          "text": "香精香料",
+          "avoid": [
+            "含香精"
+          ]
+        },
+        {
+          "id": "acid",
+          "text": "刷酸类（水杨酸、果酸）",
+          "avoid": [
+            "高浓度酸"
+          ]
+        },
+        {
+          "id": "retinol",
+          "text": "A醇 / 视黄醇",
+          "avoid": [
+            "A醇"
+          ]
+        },
+        {
+          "id": "vc",
+          "text": "高浓度维C",
+          "avoid": [
+            "高浓度VC"
+          ]
+        },
+        {
+          "id": "none",
+          "text": "都没有 / 不清楚",
+          "exclusive": true
+        }
+      ]
+    },
+    {
+      "id": "goals",
+      "dimension": "concern",
+      "multi": true,
+      "maxSelect": 3,
+      "text": "目前最想改善的问题是？（最多选3个）",
+      "options": [
+        {
+          "id": "red",
+          "text": "泛红敏感",
+          "concerns": [
+            "泛红"
+          ]
+        },
+        {
+          "id": "dry",
+          "text": "干燥起皮",
+          "concerns": [
+            "干燥起皮"
+          ]
+        },
+        {
+          "id": "oil",
+          "text": "出油",
+          "concerns": [
+            "出油"
+          ]
+        },
+        {
+          "id": "acne",
+          "text": "痘痘闭口",
+          "concerns": [
+            "痘痘",
+            "闭口"
+          ]
+        },
+        {
+          "id": "pore",
+          "text": "毛孔粗大",
+          "concerns": [
+            "毛孔"
+          ]
+        },
+        {
+          "id": "dull",
+          "text": "暗沉不透亮",
+          "concerns": [
+            "暗沉"
+          ]
+        },
+        {
+          "id": "spot",
+          "text": "色斑痘印",
+          "concerns": [
+            "色斑"
+          ]
+        },
+        {
+          "id": "line",
+          "text": "细纹松弛",
+          "concerns": [
+            "细纹",
+            "松弛"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "makeup",
+      "dimension": "makeup",
+      "multi": false,
+      "text": "上妆后通常会遇到什么情况？",
+      "options": [
+        {
+          "id": "cakey",
+          "text": "容易卡粉、起皮",
+          "concerns": [
+            "卡粉"
+          ]
+        },
+        {
+          "id": "fade",
+          "text": "容易脱妆、斑驳",
+          "concerns": [
+            "脱妆"
+          ]
+        },
+        {
+          "id": "ok",
+          "text": "还好，持妆不错",
+          "scores": {}
+        },
+        {
+          "id": "nomakeup",
+          "text": "平时不化妆",
+          "scores": {}
+        }
+      ]
+    },
+    {
+      "id": "budget",
+      "dimension": "budget",
+      "multi": false,
+      "text": "单件护肤品的预算大概是？",
+      "options": [
+        {
+          "id": "b200",
+          "text": "200元以内",
+          "budget": 200
+        },
+        {
+          "id": "b400",
+          "text": "200-400元",
+          "budget": 400
+        },
+        {
+          "id": "b800",
+          "text": "400-800元",
+          "budget": 800
+        },
+        {
+          "id": "any",
+          "text": "效果优先，不限"
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "note": "按区域判断：D=两颊干燥、T=T区出油、O=全脸（含两颊）出油、S=敏感。O≥2 且 D≤1 → 油皮；T≥2 且 D≥2 → 混干（T区油、两颊干）；T≥2 → 混油；D≥2 → 干皮；否则中性。S≥3 额外标记敏感肌。只答了干燥题、没有出油信息时不下结论。",
+    "sensitiveThreshold": 3
+  }
+}

@@ -1,0 +1,62 @@
+server:
+  port: 8080
+  address: ${SERVER_ADDRESS:127.0.0.1}
+reception:
+  idle-minutes: 15
+  max-conversations: 5
+spring:
+  config:
+    # 本地密钥文件（KEY=VALUE 格式），不要提交到版本库
+    import: optional:file:.env.local[.properties]
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 21MB
+  datasource:
+    url: ${DB_URL:jdbc:h2:mem:beautycare;MODE=MySQL;DB_CLOSE_DELAY=-1}
+    username: ${DB_USER:sa}
+    password: ${DB_PASSWORD:}
+    driver-class-name: ${DB_DRIVER:org.h2.Driver}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+catalog:
+  files: ${CATALOG_FILE:catalog-paris-loreal.json}
+ai:
+  training:
+    record: ${AI_TRAINING_RECORD:false}
+  # auto：配置了 DEEPSEEK_API_KEY 就用 DeepSeek 处理文本，否则用千问；也可显式设为 qwen / deepseek / local
+  provider: ${AI_PROVIDER:auto}
+  timeout-seconds: 60
+  qwen:
+    base-url: ${QWEN_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1}
+    api-key: ${DASHSCOPE_API_KEY:}
+    model: ${QWEN_MODEL:qwen-plus}
+    reply-model: ${QWEN_REPLY_MODEL:qwen-turbo}
+    # 短会话、无风险信号时的前情分析与偏好抽取使用轻量模型
+    light-model: ${QWEN_LIGHT_MODEL:qwen-turbo}
+    # 图片核验只能走千问 VL（DeepSeek 无视觉模型）
+    vision-model: ${QWEN_VISION_MODEL:qwen-vl-plus}
+  deepseek:
+    base-url: ${DEEPSEEK_BASE_URL:https://api.deepseek.com/v1}
+    api-key: ${DEEPSEEK_API_KEY:}
+    model: ${DEEPSEEK_MODEL:deepseek-chat}
+  local:
+    # 本地 OpenAI 兼容服务（vLLM / Ollama），用于部署 LoRA 微调后的 Qwen 小模型
+    base-url: ${LOCAL_LLM_BASE_URL:http://localhost:8000/v1}
+    api-key: ${LOCAL_LLM_API_KEY:}
+    model: ${LOCAL_LLM_MODEL:beautycare-qwen-lora}
+    # 交给本地小模型的节点，逗号分隔，例如 risk,profile；留空表示不启用
+    nodes: ${LOCAL_LLM_NODES:}
+  routing:
+    light-model-max-messages: 6
+  cache:
+    max-entries: 500
+    ttl-minutes: 30
+  vision:
+    # 图片长边降采样像素，直接决定视觉 Token
+    max-side: 768
+radar:
+  window-hours: 24
+  threshold: 3
